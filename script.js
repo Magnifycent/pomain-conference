@@ -5,16 +5,6 @@ const btnText = submitBtn.querySelector('.btn-text');
 const btnSpinner = submitBtn.querySelector('.btn-spinner');
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
 menuToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
@@ -62,18 +52,14 @@ form.addEventListener('submit', function (e) {
   fetch(form.action, {
     method: 'POST',
     body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
+    mode: 'no-cors'
   })
-    .then((response) => {
-      if (response.ok) {
-        showStatus('Thank you! Your application has been submitted successfully.', 'success');
-        form.reset();
-      } else {
-        throw new Error('Submission failed');
-      }
+    .then(() => {
+      showStatus('Thank you! Your application has been submitted successfully.', 'success');
+      form.reset();
     })
     .catch((error) => {
-      console.error('Formspree error:', error);
+      console.error('Submission error:', error);
       showStatus('Something went wrong. Please try again or contact us directly.', 'error');
     })
     .finally(() => {
@@ -95,3 +81,14 @@ function showStatus(message, type) {
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
