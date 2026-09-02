@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  const form = document.getElementById('volunteer-form');
-  const statusEl = document.getElementById('form-status');
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
 
@@ -19,7 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (form) {
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function wireUpForm(form, statusEl) {
+    if (!form || !statusEl) return;
+
     const submitBtn = form.querySelector('.btn-submit');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnSpinner = submitBtn.querySelector('.btn-spinner');
@@ -48,12 +52,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (firstInvalid) {
-        showStatus('Please fill in all required fields correctly.', 'error');
+        statusEl.textContent = 'Please fill in all required fields correctly.';
+        statusEl.classList.add('status-error', 'status-visible');
         firstInvalid.focus();
         return;
       }
 
-      setLoading(true);
+      submitBtn.disabled = true;
+      btnText.textContent = 'Submitting...';
+      btnSpinner.hidden = false;
 
       fetch(form.action, {
         method: 'POST',
@@ -61,33 +68,28 @@ document.addEventListener('DOMContentLoaded', function () {
         mode: 'no-cors'
       })
         .then(() => {
-          showStatus('Thank you! Your application has been submitted successfully.', 'success');
+          statusEl.textContent = 'Thank you! Your registration has been submitted successfully.';
+          statusEl.classList.add('status-success', 'status-visible');
           form.reset();
         })
         .catch((error) => {
           console.error('Submission error:', error);
-          showStatus('Something went wrong. Please try again or contact us directly.', 'error');
+          statusEl.textContent = 'Something went wrong. Please try again or contact us directly.';
+          statusEl.classList.add('status-error', 'status-visible');
         })
         .finally(() => {
-          setLoading(false);
+          submitBtn.disabled = false;
+          btnText.textContent = btnText.dataset.original || 'Submit';
+          btnSpinner.hidden = true;
         });
     });
 
-    function setLoading(isLoading) {
-      submitBtn.disabled = isLoading;
-      btnText.textContent = isLoading ? 'Submitting...' : 'Submit Application';
-      btnSpinner.hidden = !isLoading;
-    }
-
-    function showStatus(message, type) {
-      statusEl.textContent = message;
-      statusEl.classList.add(`status-${type}`, 'status-visible');
-    }
+    // remember original button label
+    btnText.dataset.original = btnText.textContent;
   }
 
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
+  wireUpForm(document.getElementById('volunteer-form'), document.getElementById('form-status'));
+  wireUpForm(document.getElementById('attendee-form'), document.getElementById('attendee-form-status'));
 
   // ---- Fade-in on scroll, with a safety fallback ----
   const fadeEls = document.querySelectorAll('.fade-in');
@@ -104,12 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fadeEls.forEach((el) => observer.observe(el));
   } else {
-    // Browser doesn't support IntersectionObserver — just show everything
     fadeEls.forEach((el) => el.classList.add('visible'));
   }
 
-  // Failsafe: force everything visible after 2.5s no matter what,
-  // in case the observer never fires for any reason
   setTimeout(() => {
     fadeEls.forEach((el) => el.classList.add('visible'));
   }, 2500);

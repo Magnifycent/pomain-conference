@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POMAIN Leadership Global — Volunteer Registration</title>
-  <meta name="description" content="Register to volunteer for OMOWE UPRISING — the 2026 POMAIN Leadership Global conference. Free registration, Ile-Ife, Osun State, October 10, 2026." />
-  <meta name="keywords" content="POMAIN, POMAIN Leadership Global, OMOWE UPRISING, volunteer registration, Ile-Ife conference, youth leadership Nigeria" />
+  <title>POMAIN Leadership Global — Registration</title>
+  <meta name="description" content="Register for OMOWE UPRISING — the 2026 POMAIN Leadership Global conference. Free registration, Ile-Ife, Osun State, October 10, 2026." />
+  <meta name="keywords" content="POMAIN, POMAIN Leadership Global, OMOWE UPRISING, conference registration, Ile-Ife conference, youth leadership Nigeria" />
   <meta name="author" content="POMAIN Leadership Global" />
   <link rel="canonical" href="https://www.pomainleadership.com.ng/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="POMAIN Leadership Global — OMOWE UPRISING 2026" />
-  <meta property="og:description" content="Register to volunteer for the 2026 POMAIN conference, themed OMOWE UPRISING — The Rise of Intellectual Leaders. Free, October 10, 2026, Ile-Ife, Osun State." />
+  <meta property="og:description" content="Register for the 2026 POMAIN conference, themed OMOWE UPRISING — The Rise of Intellectual Leaders. Free, October 10, 2026, Ile-Ife, Osun State." />
   <meta property="og:image" content="https://www.pomainleadership.com.ng/assets/og-image.jpg" />
   <meta property="og:url" content="https://www.pomainleadership.com.ng/" />
   <meta property="og:site_name" content="POMAIN Leadership Global" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="POMAIN Leadership Global — OMOWE UPRISING 2026" />
-  <meta name="twitter:description" content="Register to volunteer for the 2026 POMAIN conference in Ile-Ife, Osun State. Free registration." />
+  <meta name="twitter:description" content="Register for the 2026 POMAIN conference in Ile-Ife, Osun State. Free registration." />
   <meta name="twitter:image" content="https://www.pomainleadership.com.ng/assets/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -61,7 +61,6 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#about-pomain">About</a></li>
         <li><a href="#about-conference">Conference</a></li>
-        <li><a href="#departments">Volunteer</a></li>
         <li><a href="#register" class="nav-cta">Register</a></li>
       </ul>
     </nav>
@@ -75,7 +74,7 @@
         <h1 class="hero-title">OMOWE UPRISING</h1>
         <p class="hero-tagline">"The Rise of Intellectual Leaders"</p>
         <p class="hero-meta">October 10, 2026 &nbsp;•&nbsp; Ile-Ife, Osun State</p>
-        <a href="#register" class="btn-primary">Become a Volunteer</a>
+        <a href="#register" class="btn-primary">Register Now</a>
       </div>
     </section>
 
@@ -169,7 +168,8 @@ POMAIN will create opportunities for young people to share ideas, showcase their
       </div>
     </section>
 
-    <section id="departments" class="fade-in">
+    <!-- ================= VOLUNTEER SECTION (HIDDEN — kept for next year) ================= -->
+    <section id="departments" class="fade-in" hidden>
       <div class="section-inner">
         <h2>Volunteer Departments</h2>
         <p class="about-text">Choose the department where you'd like to serve.</p>
@@ -240,12 +240,14 @@ POMAIN will create opportunities for young people to share ideas, showcase their
     </section>
 
     <section id="register" class="fade-in">
-      <div class="section-inner">
+
+      <!-- VOLUNTEER FORM (HIDDEN — kept for next year) -->
+      <div class="section-inner" hidden>
         <h2>Volunteer Registration</h2>
         <p class="about-text">Fields marked * are required.</p>
       </div>
 
-      <form id="volunteer-form" class="volunteer-form" action="https://script.google.com/macros/s/AKfycbxT2u5WJESrzcY7yi_oOrRRf-knYtioPv0IXoNnW8h-X3N-7ZlX4ImMewjkmsGyjiAt/exec" method="POST" novalidate>
+      <form id="volunteer-form" class="volunteer-form" action="https://script.google.com/macros/s/AKfycbxT2u5WJESrzcY7yi_oOrRRf-knYtioPv0IXoNnW8h-X3N-7ZlX4ImMewjkmsGyjiAt/exec" method="POST" novalidate hidden>
 
         <div class="form-group">
           <label for="fullName">Full Name *</label>
@@ -327,6 +329,64 @@ POMAIN will create opportunities for young people to share ideas, showcase their
         </button>
 
         <div id="form-status" class="form-status" aria-live="polite"></div>
+
+      </form>
+
+      <!-- ================= ATTENDEE REGISTRATION FORM (VISIBLE — live now) ================= -->
+      <div class="section-inner">
+        <h2>Event Registration</h2>
+        <p class="about-text">Register to attend OMOWE UPRISING. Fields marked * are required.</p>
+      </div>
+
+       <form id="attendee-form" class="volunteer-form" action="https://script.google.com/macros/s/AKfycbzRFLhDQaIcmaczWjkvVQ9kEsSXqvJk6M8UQjlM29-wINhIXHLX8fYEvX-2QM3DCAtV/exec" method="POST" novalidate></form>
+
+        <div class="form-group">
+          <label for="attFullName">Full Name *</label>
+          <input type="text" id="attFullName" name="fullName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="attPhone">Phone Number *</label>
+          <input type="tel" id="attPhone" name="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label for="attEmail">Email Address *</label>
+          <input type="email" id="attEmail" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="attCategory">Category *</label>
+          <select id="attCategory" name="category" required>
+            <option value="" disabled selected>Select your category</option>
+            <option>Secondary School Student</option>
+            <option>Corp Member</option>
+            <option>Working Class</option>
+            <option>Student (Undergraduate)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="attState">State/Location *</label>
+          <input type="text" id="attState" name="state" required />
+        </div>
+
+        <div class="form-group">
+          <label for="attSchool">School/Organization/Workplace</label>
+          <input type="text" id="attSchool" name="school" />
+        </div>
+
+        <div class="form-group">
+          <label for="attHeard">How did you hear about POMAIN?</label>
+          <input type="text" id="attHeard" name="heardFrom" placeholder="e.g. Instagram, a friend, flyer" />
+        </div>
+
+        <button type="submit" class="btn-primary btn-submit">
+          <span class="btn-text">Register</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+
+        <div id="attendee-form-status" class="form-status" aria-live="polite"></div>
 
       </form>
     </section>
